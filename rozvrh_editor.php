@@ -71,73 +71,102 @@ $conn->close();
                 <label for="den_v_tydnu">Den v týdnu</label>
                 <select class="form-control" id="den_v_tydnu" name="den_v_tydnu">
                     <?php 
-                    foreach ($dny_v_tydnu as $den_v_tydnu) {
-                        echo '<option value="' . $den_v_tydnu['den_v_tydnu'] . '">' . $den_v_tydnu['den_v_tydnu'] . '</option>';
-                    }
+                        foreach ($dny_v_tydnu as $den_v_tydnu) {
+                            echo '<option value="' . $den_v_tydnu['den_v_tydnu'] . '">' . $den_v_tydnu['den_v_tydnu'] . '</option>';
+                        }
                     ?>
                 </select>
-
-
+                <div id="den_v_tydnu-custom" style="display:none;">
+                    <input type="text" class="form-control mt-2" id="den_v_tydnu-custom-input" name="den_v_tydnu_custom"
+                        placeholder="Den v týdnu">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="casovy_usek_id">Časový úsek</label>
                 <select class="form-control" id="casovy_usek_id" name="casovy_usek_id">
                     <?php 
-                    foreach ($casove_useky as $casovy_usek) {
-                        echo '<option value="' . $casovy_usek['casovy_usek_id'] . '">' . $casovy_usek['casovy_usek_id'] . '</option>';
-                    }
+                        foreach ($casove_useky as $casovy_usek) {
+                            echo '<option value="' . $casovy_usek['casovy_usek_id'] . '">' . $casovy_usek['casovy_usek_id'] . '</option>';
+                        }
                     ?>
-                    
                 </select>
+                <div id="casovy_usek_id-custom" style="display:none;">
+                    <input type="text" class="form-control mt-2" id="casovy_usek_id-custom-input"
+                        name="casovy_usek_id_custom" placeholder="Časový úsek">
+                </div>
+            </div>
 
+            <div class="form-group">
                 <label for="zkratka_predmetu">Zkratka předmětu</label>
                 <select class="form-control" id="zkratka_predmetu" name="zkratka_predmetu">
                     <?php 
-                    foreach ($zkratky_predmetu as $zkratka_predmetu) {
-                        echo '<option value="' . $zkratka_predmetu['zkratka_predmetu'] . '">' . $zkratka_predmetu['zkratka_predmetu'] . '</option>';
-                    }
+                        foreach ($zkratky_predmetu as $zkratka_predmetu) {
+                            echo '<option value="' . $zkratka_predmetu['zkratka_predmetu'] . '">' . $zkratka_predmetu['zkratka_predmetu'] . '</option>';
+                        }
                     ?>
                 </select>
+                <div id="zkratka_predmetu-custom" style="display:none;">
+                    <input type="text" class="form-control mt-2" id="zkratka_predmetu-custom-input"
+                        name="zkratka_predmetu_custom" placeholder="Zkratka předmětu">
+                </div>
+            </div>
 
+            <div class="form-group">
                 <label for="nazev_predmetu">Název předmětu</label>
                 <select class="form-control" id="nazev_predmetu" name="nazev_predmetu">
-                    <?php 
-                    foreach ($nazvy_predmetu as $nazev_predmetu) {
-                        echo '<option value="' . $nazev_predmetu['nazev_predmetu'] . '">' . $nazev_predmetu['nazev_predmetu'] . '</option>';
-                    }
+                    <?php
+                        foreach ($nazvy_predmetu as $nazev_predmetu) {
+                            echo '<option value="' . $nazev_predmetu['nazev_predmetu'] . '">' . $nazev_predmetu['nazev_predmetu'] . '</option>';
+                        }
                     ?>
+                    <option value="other">Other</option>
                 </select>
 
+                <div id="nazev-predmetu-custom" style="display:none;">
+                    <input type="text" class="form-control mt-2" id="nazev-predmetu-custom-input" name="nazev_predmetu_custom" placeholder="Název předmětu">
+                </div>
                 <label for="zkratka_vyucujiciho">Zkratka vyučujícího</label>
                 <select class="form-control" id="zkratka_vyucujiciho" name="zkratka_vyucujiciho">
                     <?php 
-                    foreach ($zkratky_vyucujicich as $zkratka_vyucujiciho) {
-                        echo '<option value="' . $zkratka_vyucujiciho['zkratka_vyucujiciho'] . '">' . $zkratka_vyucujiciho['zkratka_vyucujiciho'] . '</option>';
-                    }
+                        foreach ($zkratky_vyucujicich as $zkratka_vyucujiciho) {
+                            echo '<option value="' . $zkratka_vyucujiciho['zkratka_vyucujiciho'] . '">' . $zkratka_vyucujiciho['zkratka_vyucujiciho'] . '</option>';
+                        }
                     ?>
+                    <option value="other">Other</option>
                 </select>
 
+                <div id="zkratka-vyucujiciho-custom" style="display:none;">
+                    <input type="text" class="form-control mt-2" id="zkratka-vyucujiciho-custom-input" name="zkratka_vyucujiciho_custom" placeholder="Zkratka vyučujícího">
+                </div>
                 <label for="jmeno_vyucujiciho">Jméno vyučujícího</label>
                 <select class="form-control" id="jmeno_vyucujiciho" name="jmeno_vyucujiciho">
                     <?php 
-                    foreach ($jmena_vyucujicich as $jmeno_vyucujiciho) {
-                        echo '<option value="' . $jmeno_vyucujiciho['jmeno_vyucujiciho'] . '">' . $jmeno_vyucujiciho['jmeno_vyucujiciho'] . '</option>';
-                    }
+                        foreach ($jmena_vyucujicich as $jmeno_vyucujiciho) {
+                            echo '<option value="' . $jmeno_vyucujiciho['jmeno_vyucujiciho'] . '">' . $jmeno_vyucujiciho['jmeno_vyucujiciho'] . '</option>';
+                        }
                     ?>
+                    <option value="other">Other</option>
                 </select>
 
+                <div id="jmeno-vyucujiciho-custom" style="display:none;">
+                    <input type="text" class="form-control mt-2" id="jmeno-vyucujiciho-custom-input" name="jmeno_vyucujiciho_custom" placeholder="Jméno vyučujícího">
+                </div>
                 <label for="ucebna">Učebna</label>
                 <select class="form-control" id="ucebna" name="ucebna">
                     <?php 
-                    foreach ($ucebny as $ucebna) {
-                        echo '<option value="' . $ucebna['ucebna'] . '">' . $ucebna['ucebna'] . '</option>';
-                    }
+                        foreach ($ucebny as $ucebna) {
+                            echo '<option value="' . $ucebna['ucebna'] . '">' . $ucebna['ucebna'] . '</option>';
+                        }
                     ?>
-                    </option>
                     <option value="other">Other</option>
                 </select>
+
                 <div id="ucebna-custom" style="display:none;">
-                    <input type="text" class="form-control mt-2" id="ucebna-custom-input" name="ucebna_custom" placeholder="Název učebny">
+                    <input type="text" class="form-control mt-2" id="ucebna-custom-input" name="ucebna_custom"
+                        placeholder="Název učebny">
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary mt-3" name="update_rozvrh">Uložit změny</button>
         </form>
     </div>
     <script src="./js/jquery-3.6.4.min.js"></script>
