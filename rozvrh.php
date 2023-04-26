@@ -62,7 +62,7 @@ $conn->close(); ?>
 
         </tbody>
       </table>
-      <a href="rozvrh_editor.php" class="btn btn-primary">Editor rozvrhu</a>
+      <a href="rozvrh_creator.php" class="btn btn-primary">Editor rozvrhu</a>
       <form action="server.php" method="post"><input type="submit" name="logout" value="Odhlásit se!" class="btn btn-danger my-3"></form>
     </div>
     <script src="./js/jquery-3.6.4.min.js"></script>

@@ -37,7 +37,7 @@ $conn->close();
         <form method="POST" action="server.php">
             <div class="form-group">
                 <label for="den_v_tydnu">Den v týdnu</label>
-                <input type="number" class="form-control" id="den_v_tydnu" name="den_v_tydnu" min="1" max="7" required>
+                <input type="number" class="form-control" id="den_v_tydnu" name="den_v_tydnu" min="1" max="5" required>
             </div>
             <div class="form-group">
                 <label for="casovy_usek_id">Časový úsek</label>
@@ -69,6 +69,7 @@ $conn->close();
             </div>
             <button type="submit" class="btn btn-primary mt-3" name="update_rozvrh">Uložit změny</button>
         </form>
+        <a href="rozvrh.php" class="btn btn-danger mt-3">Zpět na rozvrh!</a>
     </div>
     <script src="./js/jquery-3.6.4.min.js"></script>
 </body>
