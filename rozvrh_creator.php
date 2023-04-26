@@ -37,8 +37,15 @@ $conn->close();
         <form method="POST" action="server.php">
             <div class="form-group">
                 <label for="den_v_tydnu">Den v týdnu</label>
-                <input type="number" class="form-control" id="den_v_tydnu" name="den_v_tydnu" min="1" max="5" required>
+                    <select class="form-control" id="den_v_tydnu" name="den_v_tydnu" required>
+                    <option value="1">Pondělí</option>
+                    <option value="2">Úterý</option>
+                    <option value="3">Středa</option>
+                    <option value="4">Čtvrtek</option>
+                    <option value="5">Pátek</option>
+                </select>
             </div>
+
             <div class="form-group">
                 <label for="casovy_usek_id">Časový úsek</label>
                 <select class="form-control" id="casovy_usek_id" name="casovy_usek_id" required>
