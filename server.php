@@ -1,16 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lidlrozvrh";
-
-// Připojení k databázi
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Připojení k databázi se nezdařilo: " . $conn->connect_error);
-}
+require_once "mysql.php";
 
 if (isset($_POST['register'])) {
     $email = $_POST['email'];
@@ -32,8 +23,7 @@ if (isset($_POST['register'])) {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $email, $password_hash);
         if ($stmt->execute()) {
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['id'] = $user['id'];
+            $_SESSION['email'] = $email;
             header("Location: rozvrh.php");
             die();
         } else {
@@ -58,7 +48,6 @@ if (isset($_POST['login'])) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['heslo'])) {
             $_SESSION['email'] = $user['email'];
-            $_SESSION['id'] = $user['id'];
             header("Location: rozvrh.php");
             die();
         } else {

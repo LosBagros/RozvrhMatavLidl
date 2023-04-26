@@ -5,15 +5,8 @@ if (!isset($_SESSION['email'])) {
     die();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lidlrozvrh";
+require_once "mysql.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-     die("Připojení k databázi se nezdařilo: " . $conn->connect_error); 
-}
 $today = date("N");
 $sql = "SELECT * FROM rozvrh WHERE den_v_tydnu = ? ORDER BY casovy_usek_id";
 $stmt = $conn->prepare($sql); $stmt->bind_param("i", $today); $stmt->execute();
@@ -33,7 +26,7 @@ $result = $stmt->get_result(); $rozvrh = $result->fetch_all(MYSQLI_ASSOC);
   <body>
     <div class="container">
       <h1 class="text-center mt-3">Rozvrh hodin</h1>
-      <table class="table table-bordered table-hover mt-3">
+      <table class="table table-bordered mt-3">
         <thead>
           <tr>
             <th>Hodina</th>

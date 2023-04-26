@@ -5,15 +5,8 @@ if (!isset($_SESSION['email'])) {
     die();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "lidlrozvrh";
+require_once "mysql.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Připojení k databázi se nezdařilo: " . $conn->connect_error);
-}
 
 $sql = "SELECT * FROM casove_useky";
 $result = $conn->query($sql);
