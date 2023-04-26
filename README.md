@@ -18,6 +18,14 @@
                                                   
 ```
 
+Projekt jsem speedrunoval za 2 dny, takže je to trochu hovno, ale funguje to.
+
+[Původní projekt](https://github.com/LosBagros/RozvrhMatav) jsem vzdal, protože jsem to zbytečně overthinkoval a nesplňovalo to zadání.
+
+
+
+
+
 ## Zadání
 ### Otázka 26 – Školní rozvrh hodin
 
