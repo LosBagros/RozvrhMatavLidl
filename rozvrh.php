@@ -18,7 +18,7 @@ $today = date("N");
 $sql = "SELECT * FROM rozvrh WHERE den_v_tydnu = ? ORDER BY casovy_usek_id";
 $stmt = $conn->prepare($sql); $stmt->bind_param("i", $today); $stmt->execute();
 $result = $stmt->get_result(); $rozvrh = $result->fetch_all(MYSQLI_ASSOC);
-$conn->close(); ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -45,7 +45,7 @@ $conn->close(); ?>
         <tbody>
           <?php
             foreach ($rozvrh as $row) {
-              echo "<tr>";
+              echo "<tr id='" . $row['casovy_usek_id'] . "'>";
               echo "<td>" . $row['casovy_usek_id'] . "</td>";
               echo "<td>";
               echo "<span class='predmet-zkratka'>" . $row['zkratka_predmetu'] . "</span>";
@@ -57,7 +57,7 @@ $conn->close(); ?>
               echo "</td>";
               echo "<td>" . $row['ucebna'] . "</td>";
               echo "</tr>";
-            } 
+            }
           ?>
 
         </tbody>
@@ -67,10 +67,46 @@ $conn->close(); ?>
     </div>
     <script src="./js/jquery-3.6.4.min.js"></script>
     <script>
+      <?php
+        $sql = "SELECT * FROM casove_useky";
+        $result = $conn->query($sql);
+        $casove_useky = $result->fetch_all(MYSQLI_ASSOC);
+        $conn->close();
+
+        echo "const casove_useky = " . json_encode($casove_useky) . ";";
+      ?>
+      // inspiroval jsem se ze stackoverflow, leave me alone, pls, nejvíc jsem to uvařl
+      const today = new Date();
+      const todayHours = today.getHours();
+      const todayMinutes = today.getMinutes();
+      const todaySeconds = today.getSeconds();
+      const todayTime = todayHours * 3600 + todayMinutes * 60 + todaySeconds;
+      for (let i = 0; i < casove_useky.length; i++) {
+        const casovy_usek = casove_useky[i];
+        const casovy_usek_id = casovy_usek.id;
+        const casovy_usek_zacatek = casovy_usek.zacatek;
+        const casovy_usek_konec = casovy_usek.konec;
+        const casovy_usek_zacatek_hours = parseInt(casovy_usek_zacatek.split(":")[0]);
+        const casovy_usek_zacatek_minutes = parseInt(casovy_usek_zacatek.split(":")[1]);
+        const casovy_usek_zacatek_seconds = parseInt(casovy_usek_zacatek.split(":")[2]);
+        const casovy_usek_zacatek_time = casovy_usek_zacatek_hours * 3600 + casovy_usek_zacatek_minutes * 60 + casovy_usek_zacatek_seconds;
+        const casovy_usek_konec_hours = parseInt(casovy_usek_konec.split(":")[0]);
+        const casovy_usek_konec_minutes = parseInt(casovy_usek_konec.split(":")[1]);
+        const casovy_usek_konec_seconds = parseInt(casovy_usek_konec.split(":")[2]);
+        const casovy_usek_konec_time = casovy_usek_konec_hours * 3600 + casovy_usek_konec_minutes * 60 + casovy_usek_konec_seconds;
+        if (todayTime > casovy_usek_konec_time) {
+          $("#" + casovy_usek_id).addClass("text-warning");
+        } else if (todayTime > casovy_usek_zacatek_time) {
+          $("#" + casovy_usek_id).addClass("text-success");
+        }
+      }
+
+
       $("tbody tr").hover(function () {
         $(this).find(".predmet-zkratka, .ucitel-zkratka").toggleClass("d-none");
         $(this).find(".predmet-nazev, .ucitel-jmeno").toggleClass("d-none");
       });
+
     </script>
   </body>
 </html>
